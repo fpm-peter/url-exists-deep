@@ -1,14 +1,16 @@
-const request = require('request');
+const request = require('requestretry');
 
-const urlExistsDeep = (url, header = {}, method = 'HEAD', timeout = 5000, pool = {}, prevStatus = 0) =>
+const urlExistsDeep = (url, header = {}, method = 'HEAD', timeout = 5000, retry = 5, retryDelay = 1000, pool = {}, prevStatus = 0) =>
   new Promise((resolve, reject) => {
     let headers = header;
     request({
       url,
       method,
       headers,
-      followRedirect: false,
       timeout,
+      followRedirect: false,
+      maxAttempts: retry,
+      retryDelay: timeout,
       pool,
     }, (err, res) => {
       if (err) {

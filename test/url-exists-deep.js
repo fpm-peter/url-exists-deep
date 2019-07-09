@@ -1,5 +1,5 @@
-var should = require('should');
-var urlExistsDeep = require('../src/lib/url-exists-deep');
+const should = require('should');
+const urlExistsDeep = require('../src/lib/url-exists-deep');
 
 describe('Make deep analyze of URL', function() {
 
